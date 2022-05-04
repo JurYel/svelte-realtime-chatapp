@@ -1,5 +1,6 @@
 <script>
-	import {auth, googleProvider} from "./firebase";
+	import {auth, googleProvider} from "./firebase.js";
+	import { signInWithPopup } from "firebase/auth";
 	import {authState} from "rxfire/auth";
 	import Chatroom from "./Chatroom.svelte";
 
@@ -8,7 +9,7 @@
 	const unsubscribe = authState(auth).subscribe(usr => user = usr);
 
 	function login(){
-		auth.signInWithPopup(googleProvider);
+		signInWithPopup(auth, googleProvider);
 	}
 
 	function logout() {
@@ -59,7 +60,8 @@
 
 <main>
 	{#if user}
-		<Chatroom user={user} logout={logout}/>
+		Logged in as {user.uid}
+		<!-- <Chatroom user={user} logout={logout}/> -->
 	{:else}
 		<div class="login-form">
 			<button on:click={login}>

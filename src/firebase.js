@@ -1,6 +1,6 @@
-import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
-import "firebase/compat/firestore";
+import { initializeApp } from "firebase/app";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { getFirestore } from "firebase/firestore/lite";
 
 
 // Your web app's Firebase configuration
@@ -14,14 +14,14 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-// const app = initializeApp(firebaseConfig);
-// firebase.initializeApp(firebaseConfig)
+const app = initializeApp(firebaseConfig);
+// firebase.initializeApp(firebaseConfig);
 
-if (!firebase.getApps.length){
-    firebase.initializeApp(firebaseConfig)
-}
+// if (!firebase.getApps.length){
+//     firebase.initializeApp(firebaseConfig);
+// }
 
-export const auth = firebase.auth();
-export const googleProvider = new firebase.auth.GoogleAuthProvider();
-export const db = firebase.firestore();
+export const auth = getAuth(app);
+export const googleProvider = new GoogleAuthProvider();
+export const db = getFirestore(app);
 
