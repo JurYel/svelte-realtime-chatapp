@@ -60,8 +60,8 @@
 
 <main>
 	{#if user}
-		Logged in as {user.uid}
-		<!-- <Chatroom user={user} logout={logout}/> -->
+		<!-- Logged in as {user.uid} -->
+		<Chatroom user={user} logout={logout} />
 	{:else}
 		<div class="login-form">
 			<button on:click={login}>
